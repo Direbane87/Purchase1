@@ -1,0 +1,29 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Справочник 5 (Ед. измерения)</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Код</th>
+            <th>Наименование</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for spr5 in spr5_list %}
+        <tr>
+            <td>{{ spr5.id }}</td>
+            <td>{{ spr5.code }}</td>
+            <td>{{ spr5.name }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

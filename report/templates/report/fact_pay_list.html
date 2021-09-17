@@ -1,0 +1,59 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Оплата</h1>
+     <a href="{% url 'pay_add' %}"><button class="btn btn-info"><i class="fas fa-plus-circle">Добавить новую запись</i></button></a>
+    <form action="{% url 'pay_filter' %}" method="get">
+        <div class="row">
+            <h4>Фильтрация</h4>
+            <div class="col-auto">
+                <h5>Год</h5>
+                <input class="form-control" type="text" name="year" >
+            </div>
+            <div class="col-auto">
+                <h5>Факт (№п/п)</h5>
+                <select class="form-select" aria-label="Default select example" name="fact_id">
+                    <option value="0">Выберите один из вариантов</option>
+                    {% for fact in view.get_fact %}
+                        <option value="{{ fact.id }}">{{ fact.id }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info"><i class="fas fa-plus-circle">Найти</i></button>
+            </div>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+        <tr>
+            <th> </th>
+            <th>#</th>
+            <th>Год</th>
+            <th>Сумма</th>
+            <th>Товарная накладная</th>
+            <th>Платежное поручение</th>
+            <th>Факт (№ п/п)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pay in fact_pay_list %}
+        <tr>
+            <td><a href="{% url 'pay_detail' pay.id %}" class="btn btn-warning">изм</a></td>
+            <td>{{ pay.id }}</td>
+            <td>{{ pay.year }}</td>
+            <td>{{ pay.amount }}</td>
+            <td>{{ pay.consignment_note }}</td>
+            <td>{{ pay.payment_order }}</td>
+            <td>{{ pay.id_fact }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

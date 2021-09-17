@@ -1,0 +1,124 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Привет Москва</h1>
+    <table class="table table-striped" >
+        <tr>
+            <th>№ п/п</th>
+            <th>{{ plan.id }}</th>
+        </tr>
+        <tr>
+            <th>КВР</th>
+            <th>{{ plan.kvr }}</th>
+        </tr>
+        <tr>
+            <th>ОКВЭД2</th>
+            <th>{{ plan.okved2 }}</th>
+        </tr>
+        <tr>
+            <th>ОКПД2</th>
+            <th>{{ plan.okpd2 }}</th>
+        </tr>
+        <tr>
+            <th>Предмет договора</th>
+            <th>{{ plan.name_contract }}</th>
+        </tr>
+        <tr>
+            <th>Минимально необходимые требования, предъявляемые к закупаемым товарам, работам, услугам</th>
+            <th>{{ plan.min_req }}</th>
+        </tr>
+        <tr>
+            <th>Ед. измерения</th>
+            <th>{{ plan.unit }}</th>
+        </tr>
+        <tr>
+            <th>Сведения о кол-ве (объеме)</th>
+            <th>{{ plan.info_quantity }}</th>
+        </tr>
+        <tr>
+            <th>Регион поставки товаров, выполнения работ, оказания услуг</th>
+            <th>{{ plan.region }}</th>
+        </tr>
+        <tr>
+            <th>Сведения о начальной (максимальной) цене договора (цене лота), руб.</th>
+            <th>{{ plan.info_start_price }}</th>
+        </tr>
+        <tr>
+            <th>2021</th>
+            <th>{{ plan.g2021 }}</th>
+        </tr>
+        <tr>
+            <th>2022</th>
+            <th>{{ plan.g2022 }}</th>
+        </tr>
+        <tr>
+            <th>2023</th>
+            <th>{{ plan.g2023 }}</th>
+        </tr>
+        <tr>
+            <th>2024</th>
+            <th>{{ plan.g2024 }}</th>
+        </tr>
+        <tr>
+            <th>последующие</th>
+            <th>{{ plan.next }}</th>
+        </tr>
+        <tr>
+            <th>"Планируемая дата или период размещения извещения о закупке (месяц, год)"</th>
+            <th>{{ plan.date_placing }}</th>
+        </tr>
+        <tr>
+            <th>"Срок исполнения договора (месяц, год)"</th>
+            <th>{{ plan.term_execution }}</th>
+        </tr>
+        <tr>
+            <th>Способ закупки</th>
+            <th>{{ plan.method.method }}</th>
+        </tr>
+        <tr>
+            <th>Закупка в электронной форме</th>
+            <th>{{ plan.electronic_form }}</th>
+        </tr>
+        <tr>
+            <th>Закупка в электронной форме</th>
+            <th>{{ plan.electronic_form }}</th>
+        </tr>
+        <tr>
+            <th>Пункты положения  по прямым закупкам</th>
+            <th>{{ plan.method.point }}</th>
+        </tr>
+        <tr>
+            <th>СМП</th>
+            <th>{{ plan.smp }}</th>
+        </tr>
+        <tr>
+            <th>источник финансирования</th>
+            <th>{{ plan.source_finance }}</th>
+        </tr>
+        <tr>
+            <th>Ответственный исполнитель (ФИО, контакты)</th>
+            <th>{{ plan.executor_human }}</th>
+        </tr>
+        <tr>
+            <th>Результат</th>
+            <th>{{ plan.result }}</th>
+        </tr>
+        <tr>
+            <th>исполнитель</th>
+            <th>{{ plan.executor }}</th>
+        </tr>
+        <tr>
+            <th>номер  договора</th>
+            <th>{{ plan.number_contract }}</th>
+        </tr>
+    </table>
+    <a href="{% url 'plan_update' plan.id %}" class="btn btn-info">Редактировать</a>
+    <a href="{% url 'plan_delete' plan.id %}" class="btn btn-danger">Удалить</a>
+
+</div>
+
+{% endblock %}

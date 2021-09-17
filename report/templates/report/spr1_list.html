@@ -1,0 +1,31 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Справочник 1 (КВР)</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>КВР</th>
+            <th>Аналитический код</th>
+            <th>Наименование</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for spr1 in spr1_list %}
+        <tr>
+            <td>{{ spr1.id }}</td>
+            <td>{{ spr1.kvr }}</td>
+            <td>{{ spr1.analytical_code }}</td>
+            <td>{{ spr1.name }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

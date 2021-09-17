@@ -1,0 +1,38 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Добавление новой оплаты</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table class="table table-striped" >
+            <tr>
+                <th>Сумма</th>
+                <th>{{ form.amount }}</th>
+            </tr>
+            <tr>
+                <th>Год</th>
+                <th>{{ form.year }}</th>
+            </tr>
+            <tr>
+                <th>Товарная накладная</th>
+                <th>{{ form.consignment_note }}</th>
+            </tr>
+            <tr>
+                <th>Платежное поручение</th>
+                <th>{{ form.payment_order }}</th>
+            </tr>
+            <tr>
+                <th>Факт (№ п/п)</th>
+                <th>{{ form.id_fact }}</th>
+            </tr>
+        </table>
+        <span>{{ error }}</span>
+      <button class="btn btn-success" type="submit">Добавить</button>
+    </form>
+</div>
+
+{% endblock %}

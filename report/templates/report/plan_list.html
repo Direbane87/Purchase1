@@ -1,0 +1,151 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>План</h1>
+    <a href="{% url 'plan_add' %}"><button class="btn btn-info"><i class="fas fa-plus-circle">Добавить новую запись</i></button></a>
+    <form action="{% url 'plan_filter' %}" method="get">
+        <div class="row">
+            <h4>Фильтрация</h4>
+            <div class="col-auto">
+                <h5>КВР</h5>
+                {% for kvr in view.get_kvr %}
+                <input class="form-check-input" type="checkbox" name="kvr" value="{{ kvr.id }}">
+                <span class="span editContent">{{ kvr }}</span> <br>
+                {% endfor %}
+            </div>
+            <div class="col-auto">
+                <h5>Способ закупки</h5>
+                {% for method in view.get_method %}
+                <input type="checkbox" class="form-check-input" name="method" value="{{ method.id }}">
+                <span class="span editContent">{{ method }}</span> <br>
+                {% endfor %}
+            </div>
+            <div class="col-auto">
+                <h5>Дата размещения</h5>
+                <input type="date" name="date1_placing" value="{{ plan.date1_placing }}">
+                <input type="date" name="date2_placing" value="{{ plan.date2_placing }}">
+            </div>
+            <div class="col-auto">
+                <h5>Срок исполнения</h5>
+                <input type="date" name="date1_term" value="{{ plan.date_term }}">
+                <input type="date" name="date2_term" value="{{ plan.date2_term }}">
+            </div>
+            <div class="col-auto">
+                <h5>Источник финансирования</h5>
+                <input type="text" name="source_filter" value="{{ plan.source_filter }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info"><i class="fas fa-plus-circle">Найти</i></button>
+            </div>
+        </div>
+    </form>
+    <div class="left">
+        <table class="thead-dark">
+            <tr>
+                <th rowspan="2">Изм</th>
+                <th rowspan="2">№ п/п</th>
+                <th rowspan="2">КВР</th>
+                <th rowspan="2">ОКВЭД2</th>
+                <th rowspan="2">ОКПД2</th>
+                <th colspan="13">Условия договора</th>
+                <th colspan="2">График осуществления процедур закупки</th>
+                <th rowspan="2">Способ закупки</th>
+                <th rowspan="2">Закупка в электронной форме</th>
+                <th rowspan="2">Пункты положения  по прямым закупкам</th>
+                <th rowspan="2">СМП</th>
+                <th rowspan="2">источник финансирования</th>
+                <th rowspan="2">Ответственный исполнитель (ФИО, контакты)</th>
+                <th rowspan="2">Результат</th>
+                <th rowspan="2">исполнитель</th>
+                <th rowspan="2">номер  договора</th>
+            </tr>
+            <tr>
+                <th>Предмет договора</th>
+                <th>Минимально необходимые требования, предъявляемые к закупаемым товарам, работам, услугам</th>
+                <th colspan="2">Ед. измерения</th>
+                <th>Сведения о кол-ве (объеме)</th>
+                <th colspan="2">Регион поставки товаров, выполнения работ, оказания услуг</th>
+                <th>Сведения о начальной (максимальной) цене договора (цене лота), руб.</th>
+                <th>2021</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>последующие</th>
+                <th>Планируемая дата или период размещения извещения о закупке (месяц, год)</th>
+                <th>Срок исполнения договора(месяц, год)</th>
+            </tr>
+            <tr>
+                <td> </td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+                <td>22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+                <td>27</td>
+                <td>28</td>
+            </tr>
+            <tbody>
+            {% for plan in plan_list %}
+            <tr>
+                <td><a href="{% url 'plan_detail' plan.id %}" class="btn btn-warning">изм</a></td>
+                <td>{{ plan.id }}</td>
+                <td>{{ plan.kvr.kvr }}</td>
+                <td>{{ plan.okved2.section }}</td>
+                <td>{{ plan.okpd2.section }}</td>
+                <td>{{ plan.name_contract }}</td>
+                <td>{{ plan.min_req }}</td>
+                <td>{{ plan.unit.code }}</td>
+                <td>{{ plan.unit.name }}</td>
+                <td>{{ plan.info_quantity }}</td>
+                <td>{{ plan.region.code }}</td>
+                <td>{{ plan.region.name }}</td>
+                <td>{{ plan.info_start_price }}</td>
+                <td>{{ plan.g2021 }}</td>
+                <td>{{ plan.g2022 }}</td>
+                <td>{{ plan.g2023 }}</td>
+                <td>{{ plan.g2024 }}</td>
+                <td>{{ plan.next }}</td>
+                <td>{{ plan.date_placing }}</td>
+                <td>{{ plan.term_execution }}</td>
+                <td>{{ plan.method.method }}</td>
+                <td>{{ plan.electronic_form }}</td>
+                <td>{{ plan.method.point }}</td>
+                <td>{{ plan.smp }}</td>
+                <td>{{ plan.source_finance }}</td>
+                <td>{{ plan.executor_human }}</td>
+                <td>{{ plan.result }}</td>
+                <td>{{ plan.executor }}</td>
+                <td>{{ plan.number_contract }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

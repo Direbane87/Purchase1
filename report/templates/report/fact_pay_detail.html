@@ -1,0 +1,36 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Привет Москва</h1>
+    <table class="table table-striped" >
+        <tr>
+            <th>Сумма</th>
+            <th>{{ pay.amount }}</th>
+        </tr>
+        <tr>
+            <th>Год</th>
+            <th>{{ pay.year }}</th>
+        </tr>
+        <tr>
+            <th>Товарная накладная</th>
+            <th>{{ pay.consignment_note }}</th>
+        </tr>
+        <tr>
+            <th>Платежное поручение</th>
+            <th>{{ pay.payment_order }}</th>
+        </tr>
+        <tr>
+            <th>Факт (№ п/п)</th>
+            <th>{{ pay.id_fact }}</th>
+        </tr>
+    </table>
+    <a href="{% url 'pay_update' pay.id %}" class="btn btn-info">Редактировать</a>
+    <a href="{% url 'pay_delete' pay.id %}" class="btn btn-danger">Удалить</a>
+
+</div>
+
+{% endblock %}

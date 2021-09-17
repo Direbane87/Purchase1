@@ -1,0 +1,129 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Факт</h1>
+    <a href="{% url 'fact_add' %}"><button class="btn btn-info"><i class="fas fa-plus-circle">Добавить новую запись</i></button></a>
+     <form action="{% url 'fact_filter' %}" method="get">
+        <div class="row">
+            <h4>Фильтрация</h4>
+            <div class="col-auto">
+                <h5>КВР</h5>
+                {% for kvr in view.get_kvr %}
+                <input class="form-check-input" type="checkbox" name="kvr" value="{{ kvr.id }}">
+                <span class="span editContent">{{ kvr }}</span> <br>
+                {% endfor %}
+            </div>
+            <div class="col-auto">
+                <h5>Дата договора</h5>
+                <input type="date" name="date1_placing" value="{{ date1_placing }}">
+                <input type="date" name="date2_placing" value="{{ date2_placing }}">
+            </div>
+            <div class="col-auto">
+                <h5>Срок исполнения</h5>
+                <input type="date" name="date1_term" value="{{ date_term }}">
+                <input type="date" name="date2_term" value="{{ date2_term }}">
+            </div>
+            <div class="col-auto">
+                <h5>Источник финансирования</h5>
+                <input type="text" name="source_filter" value="{{ source_filter }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info"><i class="fas fa-plus-circle">Найти</i></button>
+            </div>
+        </div>
+    </form>
+    <div class="left">
+        <table class="thead-dark">
+            <tr>
+                <th rowspan="2">Изм</th>
+                <th rowspan="2">№ п/п</th>
+                <th rowspan="2">КВР</th>
+                <th colspan="1">Условия договора</th>
+                <th rowspan="2">источник финансирования</th>
+                <th rowspan="2">исполнитель</th>
+                <th rowspan="2">номер  договора</th>
+                <th rowspan="2">дата договора</th>
+                <th rowspan="2">срок исполнения</th>
+                <th rowspan="2">доп. Соглашение дата номер</th>
+                <th rowspan="2">Фактическая сумма</th>
+                <th colspan="5">фактическая сумма</th>
+                <th colspan="5">оплата</th>
+                <th rowspan="2">товарная накладная</th>
+                <th rowspan="2">платежное поручение</th>
+            </tr>
+            <tr>
+                <th>Предмет договора</th>
+                <th>2021</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>последующие</th>
+                <th>2021</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>последующие</th>
+            </tr>
+            <tr>
+                <td> </td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+                <td>22</td>
+            </tr>
+            <tbody>
+            {% for fact in fact_list %}
+            <tr>
+                <td><a href="{% url 'fact_detail' fact.id %}" class="btn btn-warning">изм</a></td>
+                <td>{{ fact.id }}</td>
+                <td>{{ fact.kvr.kvr }}</td>
+                <td>{{ fact.name_contract }}</td>
+                <td>{{ fact.source_finance }}</td>
+                <td>{{ fact.executor }}</td>
+                <td>{{ fact.number_contract }}</td>
+                <td>{{ fact.date_contract }}</td>
+                <td>{{ fact.term_execution }}</td>
+                <td>{{ fact.add_agreement }}</td>
+                <td>{{ fact.fact_price }}</td>
+                <td>{{ fact.fact_price1 }}</td>
+                <td>{{ fact.fact_price2 }}</td>
+                <td>{{ fact.fact_price3 }}</td>
+                <td>{{ fact.fact_price4 }}</td>
+                <td>{{ fact.fact_next }}</td>
+                <td>{{ fact.payment_year1 }}</td>
+                <td>{{ fact.payment_year2 }}</td>
+                <td>{{ fact.payment_year3 }}</td>
+                <td>{{ fact.payment_year4 }}</td>
+                <td>{{ fact.payment_next }}</td>
+                <td>{{ fact.consignment_note }}</td>
+                <td>{{ fact.payment_order }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

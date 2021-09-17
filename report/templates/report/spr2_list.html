@@ -1,0 +1,29 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Справочник 2 (ОКВЕД2)</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Раздел</th>
+            <th>Наименование</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for spr2 in spr2_list %}
+        <tr>
+            <td>{{ spr2.id }}</td>
+            <td>{{ spr2.section }}</td>
+            <td>{{ spr2.description }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Справочник 7 (Способ закупки)</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Способ закупки</th>
+            <th>Пункт плана закупок</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for spr7 in spr7_list %}
+        <tr>
+            <td>{{ spr7.id }}</td>
+            <td>{{ spr7.method }}</td>
+            <td>{{ spr7.point }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

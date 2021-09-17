@@ -1,0 +1,114 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Добавление закупки</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table class="table table-striped" >
+            <tr>
+                <th>КВР</th>
+                <th>{{ form.kvr }}</th>
+            </tr>
+            <tr>
+                <th>ОКВЭД2</th>
+                <th>{{ form.okved2 }}</th>
+            </tr>
+            <tr>
+                <th>ОКПД2</th>
+                <th>{{ form.okpd2 }}</th>
+            </tr>
+            <tr>
+                <th>Предмет договора</th>
+                <th>{{ form.name_contract }}</th>
+            </tr>
+            <tr>
+                <th>Минимально необходимые требования, предъявляемые к закупаемым товарам, работам, услугам</th>
+                <th>{{ form.min_req }}</th>
+            </tr>
+            <tr>
+                <th>Ед. измерения</th>
+                <th>{{ form.unit }}</th>
+            </tr>
+            <tr>
+                <th>Сведения о кол-ве (объеме)</th>
+                <th>{{ form.info_quantity }}</th>
+            </tr>
+            <tr>
+                <th>Регион поставки товаров, выполнения работ, оказания услуг</th>
+                <th>{{ form.region }}</th>
+            </tr>
+            <tr>
+                <th>Сведения о начальной (максимальной) цене договора (цене лота), руб.</th>
+                <th>{{ form.info_start_price }}</th>
+            </tr>
+            <tr>
+                <th>2021</th>
+                <th>{{ form.g2021 }}</th>
+            </tr>
+            <tr>
+                <th>2022</th>
+                <th>{{ form.g2022 }}</th>
+            </tr>
+            <tr>
+                <th>2023</th>
+                <th>{{ form.g2023 }}</th>
+            </tr>
+            <tr>
+                <th>2024</th>
+                <th>{{ form.g2024 }}</th>
+            </tr>
+            <tr>
+                <th>последующие</th>
+                <th>{{ form.next }}</th>
+            </tr>
+            <tr>
+                <th>"Планируемая дата или период размещения извещения о закупке (месяц, год)"</th>
+                <th>{{ form.date_placing }}</th>
+            </tr>
+            <tr>
+                <th>"Срок исполнения договора (месяц, год)"</th>
+                <th>{{ form.term_execution }}</th>
+            </tr>
+            <tr>
+                <th>Способ закупки</th>
+                <th>{{ form.method }}</th>
+            </tr>
+            <tr>
+                <th>Закупка в электронной форме</th>
+                <th>{{ form.electronic_form }}</th>
+            </tr>
+            <tr>
+                <th>СМП</th>
+                <th>{{ form.smp }}</th>
+            </tr>
+            <tr>
+                <th>источник финансирования</th>
+                <th>{{ form.source_finance }}</th>
+            </tr>
+            <tr>
+                <th>Ответственный исполнитель (ФИО, контакты)</th>
+                <th>{{ form.executor_human }}</th>
+            </tr>
+            <tr>
+                <th>Результат</th>
+                <th>{{ form.result }}</th>
+            </tr>
+            <tr>
+                <th>исполнитель</th>
+                <th>{{ form.executor }}</th>
+            </tr>
+            <tr>
+                <th>номер  договора</th>
+                <th>{{ form.number_contract }}</th>
+            </tr>
+        </table>
+        <span>{{ error }}</span>
+      <button class="btn btn-success" type="submit">Добавить</button>
+    </form>
+</div>
+
+{% endblock %}

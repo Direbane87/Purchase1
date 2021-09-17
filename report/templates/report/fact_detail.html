@@ -1,0 +1,145 @@
+{% extends 'report/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="features">
+    <h1>Привет Москва</h1>
+    <table class="table table-striped" >
+        <tr>
+            <th colspan="2">КВР</th>
+            <th>{{ fact.kvr }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">Предмет договора</th>
+            <th>{{ fact.name_contract }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">источник финансирования</th>
+            <th>{{ fact.source_finance }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">исполнитель</th>
+            <th>{{ fact.executor }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">номер  договора</th>
+            <th>{{ fact.number_contract }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">дата договора</th>
+            <th>{{ fact.date_contract }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">срок исполнения</th>
+            <th>{{ fact.term_execution }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">доп. Соглашение дата номер</th>
+            <th>{{ fact.add_agreement }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">Фактическая сумма</th>
+            <th>{{ fact.fact_price }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">2021</th>
+            <th>{{ fact.fact_price1 }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">2022</th>
+            <th>{{ fact.fact_price2 }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">2023</th>
+            <th>{{ fact.fact_price3 }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">2024</th>
+            <th>{{ fact.fact_price4 }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">последующие</th>
+            <th>{{ fact.fact_next }}</th>
+        </tr>
+        <tr>
+            <th><a href="/pay/filter/?year=2021&fact_id={{ fact.id }}" class="btn btn-warning">изм</a></th>
+            <th>2021</th>
+            <th>{{ fact.payment_year1 }}<br>
+                {% for pay in view.get_pay %}
+                    {% if pay.id_fact  == fact %}
+                        {% if pay.year == '2021' %}
+                            {{ pay }}<br>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </th>
+        </tr>
+        <tr>
+            <th><a href="/pay/filter/?year=2022&fact_id={{ fact.id }}" class="btn btn-warning">изм</a></th>
+            <th>2022</th>
+            <th>{{ fact.payment_year2 }}<br>
+                {% for pay in view.get_pay %}
+                    {% if pay.id_fact  == fact %}
+                        {% if pay.year == '2022' %}
+                            {{ pay }}<br>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </th>
+        </tr>
+        <tr>
+            <th><a href="/pay/filter/?year=2023&fact_id={{ fact.id }}" class="btn btn-warning">изм</a></th>
+            <th>2023</th>
+            <th>{{ fact.payment_year3 }}<br>
+                {% for pay in view.get_pay %}
+                    {% if pay.id_fact  == fact %}
+                        {% if pay.year == '2023' %}
+                            {{ pay }}<br>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </th>
+        </tr>
+        <tr>
+            <th><a href="/pay/filter/?year=2024&fact_id={{ fact.id }}" class="btn btn-warning">изм</a></th>
+            <th>2024</th>
+            <th>{{ fact.payment_year4 }}<br>
+                {% for pay in view.get_pay %}
+                    {% if pay.id_fact  == fact %}
+                        {% if pay.year == '2024' %}
+                            {{ pay }}<br>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </th>
+        </tr>
+        <tr>
+            <th><a href="/pay/filter/?year=next&fact_id={{ fact.id }}" class="btn btn-warning">изм</a></th>
+            <th>последующие</th>
+            <th>{{ fact.payment_next }}<br>
+                {% for pay in view.get_pay %}
+                    {% if pay.id_fact  == fact %}
+                        {% if pay.year == 'next' %}
+                            {{ pay }}<br>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </th>
+        </tr>
+        <tr>
+            <th colspan="2">товарная накладная</th>
+            <th>{{ fact.consignment_note }}</th>
+        </tr>
+        <tr>
+            <th colspan="2">платежное поручение</th>
+            <th >{{ fact.payment_order }}</th>
+        </tr>
+    </table>
+    <a href="{% url 'fact_update' fact.id %}" class="btn btn-info">Редактировать</a>
+    <a href="{% url 'fact_delete' fact.id %}" class="btn btn-danger">Удалить</a>
+
+</div>
+
+{% endblock %}
